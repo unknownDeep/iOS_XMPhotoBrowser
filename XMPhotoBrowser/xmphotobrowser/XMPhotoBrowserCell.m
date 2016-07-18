@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
+@property (nonatomic, assign) CGFloat maximumZoomScale;
+
 @end
 @implementation XMPhotoBrowserCell
 
@@ -29,7 +31,7 @@
         
         self.scrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         self.scrollView.contentSize = [UIScreen mainScreen].bounds.size;
-        self.scrollView.maximumZoomScale=3.0;
+        self.scrollView.maximumZoomScale=self.maximumZoomScale;
         self.scrollView.minimumZoomScale=1;
         self.scrollView.delegate = self;
         [self.scrollViewWrap addSubview:self.scrollView];
@@ -38,6 +40,18 @@
         self.viewImage.userInteractionEnabled = YES;
         self.viewImage.contentMode = UIViewContentModeScaleAspectFit;
         [self.scrollView addSubview:self.viewImage];
+        
+        UITapGestureRecognizer *tapGestureRecognizerSingle = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapSingleImageView:)];
+        [tapGestureRecognizerSingle setNumberOfTapsRequired:1];
+        [self.viewImage addGestureRecognizer:tapGestureRecognizerSingle];
+        UITapGestureRecognizer *tapGestureRecognizerDouble = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapDoubleImageView:)];
+        [tapGestureRecognizerDouble setNumberOfTapsRequired:2];
+        [self.viewImage addGestureRecognizer:tapGestureRecognizerDouble];
+        
+        //当未识别或检测tapGestureRecognizerDouble失败时，tapGestureRecognizerSingle才有效
+        [tapGestureRecognizerSingle requireGestureRecognizerToFail:tapGestureRecognizerDouble];
+        
+        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -79,4 +93,19 @@
     return 15;
 }
 
+- (void)onTapSingleImageView:(UITapGestureRecognizer*)sender{
+    
+}
+
+- (void)onTapDoubleImageView:(UITapGestureRecognizer*)sender{
+    if (self.scrollView.zoomScale > 1.0) {
+        [self.scrollView setZoomScale:1.0 animated:YES];
+    }else{
+        [self.scrollView setZoomScale:self.maximumZoomScale animated:YES];
+    }
+}
+
+- (CGFloat)maximumZoomScale{
+    return 3.0;
+}
 @end
