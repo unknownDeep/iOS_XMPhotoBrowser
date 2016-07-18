@@ -15,6 +15,11 @@
 		040CAC8D1D3C7AF9008C125B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040CAC8B1D3C7AF9008C125B /* LaunchScreen.storyboard */; };
 		040CAC981D3C7AF9008C125B /* XMPhotoBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 040CAC971D3C7AF9008C125B /* XMPhotoBrowserTests.m */; };
 		040CACA31D3C7AF9008C125B /* XMPhotoBrowserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 040CACA21D3C7AF9008C125B /* XMPhotoBrowserUITests.m */; };
+		040CACBB1D3C7BA5008C125B /* XMPhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040CACB21D3C7BA5008C125B /* XMPhotoBrowserCell.m */; };
+		040CACBC1D3C7BA5008C125B /* XMPhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040CACB41D3C7BA5008C125B /* XMPhotoBrowserController.m */; };
+		040CACBD1D3C7BA5008C125B /* XMPhotoBrowserMaskViewBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = 040CACB61D3C7BA5008C125B /* XMPhotoBrowserMaskViewBottom.m */; };
+		040CACBE1D3C7BA5008C125B /* XMPhotoBrowserMaskViewCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 040CACB81D3C7BA5008C125B /* XMPhotoBrowserMaskViewCenter.m */; };
+		040CACBF1D3C7BA5008C125B /* XMPhotoBrowserMaskViewTop.m in Sources */ = {isa = PBXBuildFile; fileRef = 040CACBA1D3C7BA5008C125B /* XMPhotoBrowserMaskViewTop.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,16 @@
 		040CAC9E1D3C7AF9008C125B /* XMPhotoBrowserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMPhotoBrowserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		040CACA21D3C7AF9008C125B /* XMPhotoBrowserUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMPhotoBrowserUITests.m; sourceTree = "<group>"; };
 		040CACA41D3C7AF9008C125B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		040CACB11D3C7BA5008C125B /* XMPhotoBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPhotoBrowserCell.h; sourceTree = "<group>"; };
+		040CACB21D3C7BA5008C125B /* XMPhotoBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPhotoBrowserCell.m; sourceTree = "<group>"; };
+		040CACB31D3C7BA5008C125B /* XMPhotoBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPhotoBrowserController.h; sourceTree = "<group>"; };
+		040CACB41D3C7BA5008C125B /* XMPhotoBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPhotoBrowserController.m; sourceTree = "<group>"; };
+		040CACB51D3C7BA5008C125B /* XMPhotoBrowserMaskViewBottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPhotoBrowserMaskViewBottom.h; sourceTree = "<group>"; };
+		040CACB61D3C7BA5008C125B /* XMPhotoBrowserMaskViewBottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPhotoBrowserMaskViewBottom.m; sourceTree = "<group>"; };
+		040CACB71D3C7BA5008C125B /* XMPhotoBrowserMaskViewCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPhotoBrowserMaskViewCenter.h; sourceTree = "<group>"; };
+		040CACB81D3C7BA5008C125B /* XMPhotoBrowserMaskViewCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPhotoBrowserMaskViewCenter.m; sourceTree = "<group>"; };
+		040CACB91D3C7BA5008C125B /* XMPhotoBrowserMaskViewTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPhotoBrowserMaskViewTop.h; sourceTree = "<group>"; };
+		040CACBA1D3C7BA5008C125B /* XMPhotoBrowserMaskViewTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPhotoBrowserMaskViewTop.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +116,7 @@
 		040CAC7C1D3C7AF9008C125B /* XMPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				040CACB01D3C7B21008C125B /* xmphotobrowser */,
 				040CAC801D3C7AF9008C125B /* AppDelegate.h */,
 				040CAC811D3C7AF9008C125B /* AppDelegate.m */,
 				040CAC831D3C7AF9008C125B /* ViewController.h */,
@@ -138,6 +154,23 @@
 				040CACA41D3C7AF9008C125B /* Info.plist */,
 			);
 			path = XMPhotoBrowserUITests;
+			sourceTree = "<group>";
+		};
+		040CACB01D3C7B21008C125B /* xmphotobrowser */ = {
+			isa = PBXGroup;
+			children = (
+				040CACB11D3C7BA5008C125B /* XMPhotoBrowserCell.h */,
+				040CACB21D3C7BA5008C125B /* XMPhotoBrowserCell.m */,
+				040CACB31D3C7BA5008C125B /* XMPhotoBrowserController.h */,
+				040CACB41D3C7BA5008C125B /* XMPhotoBrowserController.m */,
+				040CACB51D3C7BA5008C125B /* XMPhotoBrowserMaskViewBottom.h */,
+				040CACB61D3C7BA5008C125B /* XMPhotoBrowserMaskViewBottom.m */,
+				040CACB71D3C7BA5008C125B /* XMPhotoBrowserMaskViewCenter.h */,
+				040CACB81D3C7BA5008C125B /* XMPhotoBrowserMaskViewCenter.m */,
+				040CACB91D3C7BA5008C125B /* XMPhotoBrowserMaskViewTop.h */,
+				040CACBA1D3C7BA5008C125B /* XMPhotoBrowserMaskViewTop.m */,
+			);
+			path = xmphotobrowser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +305,11 @@
 			files = (
 				040CAC851D3C7AF9008C125B /* ViewController.m in Sources */,
 				040CAC821D3C7AF9008C125B /* AppDelegate.m in Sources */,
+				040CACBE1D3C7BA5008C125B /* XMPhotoBrowserMaskViewCenter.m in Sources */,
+				040CACBF1D3C7BA5008C125B /* XMPhotoBrowserMaskViewTop.m in Sources */,
+				040CACBD1D3C7BA5008C125B /* XMPhotoBrowserMaskViewBottom.m in Sources */,
+				040CACBC1D3C7BA5008C125B /* XMPhotoBrowserController.m in Sources */,
+				040CACBB1D3C7BA5008C125B /* XMPhotoBrowserCell.m in Sources */,
 				040CAC7F1D3C7AF9008C125B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,7 +453,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = XMPhotoBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.imeetu.XMPhotoBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.imeetu.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -426,7 +464,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = XMPhotoBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.imeetu.XMPhotoBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.imeetu.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

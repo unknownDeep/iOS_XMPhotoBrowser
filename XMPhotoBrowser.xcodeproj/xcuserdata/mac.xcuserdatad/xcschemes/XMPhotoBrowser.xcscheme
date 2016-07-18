@@ -5,6 +5,22 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "040CAC791D3C7AF9008C125B"
+               BuildableName = "XMPhotoBrowser.app"
+               BlueprintName = "XMPhotoBrowser"
+               ReferencedContainer = "container:XMPhotoBrowser.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -12,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "040CAC921D3C7AF9008C125B"
+               BuildableName = "XMPhotoBrowserTests.xctest"
+               BlueprintName = "XMPhotoBrowserTests"
+               ReferencedContainer = "container:XMPhotoBrowser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "040CAC9D1D3C7AF9008C125B"
+               BuildableName = "XMPhotoBrowserUITests.xctest"
+               BlueprintName = "XMPhotoBrowserUITests"
+               ReferencedContainer = "container:XMPhotoBrowser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "040CAC791D3C7AF9008C125B"
+            BuildableName = "XMPhotoBrowser.app"
+            BlueprintName = "XMPhotoBrowser"
+            ReferencedContainer = "container:XMPhotoBrowser.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -26,6 +71,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "040CAC791D3C7AF9008C125B"
+            BuildableName = "XMPhotoBrowser.app"
+            BlueprintName = "XMPhotoBrowser"
+            ReferencedContainer = "container:XMPhotoBrowser.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -35,6 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "040CAC791D3C7AF9008C125B"
+            BuildableName = "XMPhotoBrowser.app"
+            BlueprintName = "XMPhotoBrowser"
+            ReferencedContainer = "container:XMPhotoBrowser.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
