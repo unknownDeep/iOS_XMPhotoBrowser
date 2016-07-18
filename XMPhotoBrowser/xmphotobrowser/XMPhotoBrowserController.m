@@ -16,7 +16,7 @@
 
 #define CellReuseIdentifier @"CellReuseIdentifierImages"
 
-@interface XMPhotoBrowserController()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, XMPhotoBrowserCellDelegate>
+@interface XMPhotoBrowserController()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, XMPhotoBrowserCellDelegate, XMPhotoBrowserMaskViewTopDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) XMPhotoBrowserMaskViewTop *maskViewTop;
@@ -49,6 +49,7 @@
     [self.view addSubview:self.collectionView];
     
     self.maskViewTop = [XMPhotoBrowserMaskViewTop viewWithSuperView:self.view];
+    self.maskViewTop.delegateMaskView = self;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
@@ -60,10 +61,20 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    {
+        //设置顶部视图title
+        int index = (self.collectionView.contentOffset.x/[UIScreen mainScreen].bounds.size.width+0.5) + 1;
+        [self.maskViewTop setViewTitle:[NSString stringWithFormat:@"%i of %li", index, self.images.count]];
+    }
     return self.images.count;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    //设置顶部视图title
+    int index = (self.collectionView.contentOffset.x/[UIScreen mainScreen].bounds.size.width+0.5) + 1;
+    [self.maskViewTop setViewTitle:[NSString stringWithFormat:@"%i of %li", index, self.images.count]];
+    
+    //设置图片视图的偏移量
     for (XMPhotoBrowserCell *cell in self.collectionView.visibleCells) {
         [cell collectionViewScrollToX:scrollView.contentOffset.x];
     }
@@ -122,5 +133,15 @@
     }];
     
     
+}
+
+//===============================================
+#pragma mark - 顶部视图代理方法
+- (void)xmPhotoBrowserMaskViewTop:(XMPhotoBrowserMaskViewTop *)view onClickBtnLeft:(UIButton *)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)xmPhotoBrowserMaskViewTop:(XMPhotoBrowserMaskViewTop *)view onClickBtnRight:(UIButton *)sender{
+
 }
 @end

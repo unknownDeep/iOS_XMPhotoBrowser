@@ -60,7 +60,7 @@
 - (void)onClickBtnRight:(UIButton*)sender{
     if (self.delegateMaskView) {
         if ([self.delegateMaskView respondsToSelector:@selector(xmPhotoBrowserMaskViewTop:onClickBtnLeft:)]) {
-            [self.delegateMaskView xmPhotoBrowserMaskViewTop:self onClickBtnLeft:sender];
+            [self.delegateMaskView xmPhotoBrowserMaskViewTop:self onClickBtnRight:sender];
         }
     }
 }
