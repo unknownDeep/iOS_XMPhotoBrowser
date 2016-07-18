@@ -16,19 +16,37 @@
 
 #define CellReuseIdentifier @"CellReuseIdentifierImages"
 
+typedef NS_ENUM(NSInteger, XMPhotoBrowserType) {
+    XMPhotoBrowserTypeImg,
+    XMPhotoBrowserTypeUrl
+};
+
 @interface XMPhotoBrowserController()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, XMPhotoBrowserCellDelegate, XMPhotoBrowserMaskViewTopDelegate>
+
+@property (nonatomic, assign) XMPhotoBrowserType photoBrowserType;
+@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSArray *imagesUrl;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) XMPhotoBrowserMaskViewTop *maskViewTop;
-@property (nonatomic, strong) NSMutableArray *images;
 
 @property (nonatomic, assign) BOOL navigationViewHidden;
 
 @end
 @implementation XMPhotoBrowserController
 
-+ (instancetype)controller{
++ (instancetype)controllerWithImages:(NSArray *)images{
     XMPhotoBrowserController *controller = [[XMPhotoBrowserController alloc] init];
+    controller.images = images;
+    controller.photoBrowserType = XMPhotoBrowserTypeImg;
+    
+    return controller;
+}
+
++ (instancetype)controllerWithImagesUrl:(NSArray *)imagesUrl{
+    XMPhotoBrowserController *controller = [[XMPhotoBrowserController alloc] init];
+    controller.imagesUrl = imagesUrl;
+    controller.photoBrowserType = XMPhotoBrowserTypeUrl;
     
     return controller;
 }
@@ -61,18 +79,30 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    NSInteger count = 0;
+    if (self.photoBrowserType == XMPhotoBrowserTypeImg) {
+        count = self.images.count;
+    }else if (self.photoBrowserType == XMPhotoBrowserTypeUrl){
+        count = self.imagesUrl.count;
+    }
     {
         //设置顶部视图title
         int index = (self.collectionView.contentOffset.x/[UIScreen mainScreen].bounds.size.width+0.5) + 1;
-        [self.maskViewTop setViewTitle:[NSString stringWithFormat:@"%i of %li", index, self.images.count]];
+        [self.maskViewTop setViewTitle:[NSString stringWithFormat:@"%i of %li", index, count]];
     }
-    return self.images.count;
+    return count;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     //设置顶部视图title
+    NSInteger count = 0;
+    if (self.photoBrowserType == XMPhotoBrowserTypeImg) {
+        count = self.images.count;
+    }else if (self.photoBrowserType == XMPhotoBrowserTypeUrl){
+        count = self.imagesUrl.count;
+    }
     int index = (self.collectionView.contentOffset.x/[UIScreen mainScreen].bounds.size.width+0.5) + 1;
-    [self.maskViewTop setViewTitle:[NSString stringWithFormat:@"%i of %li", index, self.images.count]];
+    [self.maskViewTop setViewTitle:[NSString stringWithFormat:@"%i of %li", index, count]];
     
     //设置图片视图的偏移量
     for (XMPhotoBrowserCell *cell in self.collectionView.visibleCells) {
@@ -82,7 +112,12 @@
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     XMPhotoBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellReuseIdentifier forIndexPath:indexPath];
-    [cell initialWithIndexPath:indexPath scrollX:collectionView.contentOffset.x image:self.images[indexPath.row]];
+    if (self.photoBrowserType == XMPhotoBrowserTypeImg) {
+        [cell initialWithIndexPath:indexPath scrollX:collectionView.contentOffset.x image:self.images[indexPath.row]];
+    }else{
+        [cell initialWithIndexPath:indexPath scrollX:collectionView.contentOffset.x imageURL:self.imagesUrl[indexPath.row]];
+    }
+    
     cell.delegateCell = self;
     
     return cell;
@@ -102,17 +137,6 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return [UIScreen mainScreen].bounds.size;
-}
-
-- (NSArray *)images{
-    if (!_images) {
-        _images = [NSMutableArray array];
-        for (int i=0; i<10; i++) {
-            UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"img_%i", i]];
-            [_images addObject:img];
-        }
-    }
-    return _images;
 }
 
 //===============================================

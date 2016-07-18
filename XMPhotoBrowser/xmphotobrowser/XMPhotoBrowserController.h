@@ -13,14 +13,8 @@
 
 @interface XMPhotoBrowserController : UIViewController
 
-+ (instancetype)controller;
++ (instancetype)controllerWithImages:(NSArray*)images;
 
-@end
-@protocol XMPhotoBrowserControllerDelegate <NSObject>
-
-
-@end
-@protocol XMPhotoBrowserControllerDatasource <NSObject>
-
++ (instancetype)controllerWithImagesUrl:(NSArray*)imagesUrl;
 
 @end
