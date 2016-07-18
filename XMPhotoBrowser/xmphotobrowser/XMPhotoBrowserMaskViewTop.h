@@ -16,7 +16,7 @@
 
 + (instancetype)viewWithSuperView:(UIView*)superView;
 
-- (void)makeViewHidden:(BOOL)hidden;
+- (void)makeViewHidden:(BOOL)hidden animationCompletion:(void(^)(BOOL finish))completion;
 //设置左边按钮标题，默认：@"返回"
 - (void)setBtnLeftWithTitle:(NSString*)title;
 //设置左边按钮图标，默认：@"xmphotobrowser_back"
@@ -28,6 +28,8 @@
 //设置title，默认：@"0 of 0"
 - (void)setViewTitle:(NSString*)title;
 
+//获得视图的隐藏状态
+- (BOOL)getHiddenState;
 @end
 @protocol XMPhotoBrowserMaskViewTopDelegate <NSObject>
 @optional

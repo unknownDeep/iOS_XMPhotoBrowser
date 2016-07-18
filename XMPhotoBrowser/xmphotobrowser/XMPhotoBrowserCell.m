@@ -50,8 +50,6 @@
         
         //当未识别或检测tapGestureRecognizerDouble失败时，tapGestureRecognizerSingle才有效
         [tapGestureRecognizerSingle requireGestureRecognizerToFail:tapGestureRecognizerDouble];
-        
-        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -94,7 +92,11 @@
 }
 
 - (void)onTapSingleImageView:(UITapGestureRecognizer*)sender{
-    
+    if (self.delegateCell) {
+        if ([self.delegateCell respondsToSelector:@selector(xmPhotoBrowserCell:onTapSingleImageView:)]) {
+            [self.delegateCell xmPhotoBrowserCell:self onTapSingleImageView:self.viewImage];
+        }
+    }
 }
 
 - (void)onTapDoubleImageView:(UITapGestureRecognizer*)sender{

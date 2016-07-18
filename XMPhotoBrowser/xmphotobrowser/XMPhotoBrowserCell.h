@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol  XMPhotoBrowserCellDelegate;
+
 @interface XMPhotoBrowserCell : UICollectionViewCell
+
+@property (nonatomic, weak) id<XMPhotoBrowserCellDelegate> delegateCell;
 
 - (void)initialWithIndexPath:(NSIndexPath*)indexPath scrollX:(CGFloat)x image:(UIImage*)image;
 
@@ -18,6 +22,6 @@
 
 @end
 @protocol XMPhotoBrowserCellDelegate <NSObject>
-
+- (void)xmPhotoBrowserCell:(XMPhotoBrowserCell*)cell onTapSingleImageView:(UIImageView*)imgView;
 
 @end

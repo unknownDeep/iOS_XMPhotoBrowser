@@ -13,10 +13,14 @@
 @property (nonatomic, strong) UIView *superView;
 
 @property (nonatomic, assign) CGFloat viewHeight;
+@property (nonatomic, strong) UIBlurEffect *blurEffect;
+@property (nonatomic, strong) UIVisualEffectView *visualEffectView;
 @property (nonatomic, strong) UIButton *btnLeft;
 @property (nonatomic, strong) UIButton *btnRight;
 @property (nonatomic, strong) UILabel *labelTitle;
 
+//视图隐藏状态，YES：视图隐藏中；NO：视图正在显示；
+@property (nonatomic, assign) BOOL hiddenState;
 @end
 @implementation XMPhotoBrowserMaskViewTop
 
@@ -30,7 +34,11 @@
 
 - (void)initial{
     self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.viewHeight);
-    self.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.7];
+    
+    //毛玻璃效果
+    self.visualEffectView.frame = self.bounds;
+    self.visualEffectView.alpha = 0.95;
+    [self addSubview:self.visualEffectView];
     
     [self addSubview:self.btnLeft];
     
@@ -57,14 +65,19 @@
     }
 }
 
-- (void)makeViewHidden:(BOOL)hidden{
-    [UIView animateWithDuration:0.25 animations:^{
+- (void)makeViewHidden:(BOOL)hidden animationCompletion:(void (^)(BOOL))completion{
+    self.hiddenState = hidden;
+    [UIView animateWithDuration:0.5 animations:^{
         if (hidden) {
             self.frame = CGRectMake(0, -self.viewHeight, [UIScreen mainScreen].bounds.size.width, self.viewHeight);
         }else{
             self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.viewHeight);
         }
         [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        if (completion) {
+            completion (finished);
+        }
     }];
 }
 
@@ -88,11 +101,29 @@
     [self.btnRight setTitle:title forState:UIControlStateNormal];
 }
 
+- (BOOL)getHiddenState{
+    return _hiddenState;
+}
+
 - (CGFloat)viewHeight{
     return 64;
 }
 //=============================================================================
 #pragma mark - 懒加载控件
+- (UIBlurEffect *)blurEffect{
+    if (!_blurEffect) {
+        _blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    }
+    return _blurEffect;
+}
+
+- (UIVisualEffectView *)visualEffectView{
+    if (!_visualEffectView) {
+        _visualEffectView = [[UIVisualEffectView alloc] initWithEffect:self.blurEffect];
+    }
+    return _visualEffectView;
+}
+
 - (UIButton *)btnLeft{
     if (!_btnLeft) {
         _btnLeft = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 60, 44)];
